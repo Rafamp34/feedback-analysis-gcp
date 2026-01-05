@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Análisis de Feedback</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favi.png">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-brain"></i>
+                    <h1>Sistema de Análisis de Feedback</h1>
+                </div>
+                <div class="header-info">
+                    <span class="badge">Google Cloud AI</span>
+                </div>
+            </div>
+            <p class="subtitle">Análisis multimodal inteligente: Texto • Audio • Imagen</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="texto">
+                <i class="fas fa-file-text"></i> Texto
+            </button>
+            <button class="tab-btn" data-tab="audio">
+                <i class="fas fa-microphone"></i> Audio
+            </button>
+            <button class="tab-btn" data-tab="imagen">
+                <i class="fas fa-image"></i> Imagen
+            </button>
+            <button class="tab-btn" data-tab="multimodal">
+                <i class="fas fa-layer-group"></i> Multimodal
+            </button>
+        </div>
+
+        <!-- Tab Contents -->
+        <div class="tab-content active" id="texto">
+            <div class="card">
+                <h2><i class="fas fa-comment-dots"></i> Análisis de Texto</h2>
+                <p class="text-muted">Analiza reseñas escritas con Natural Language API</p>
+                
+                <form id="formTexto">
+                    <div class="form-group">
+                        <label for="inputTexto">Escribe la reseña del cliente:</label>
+                        <textarea 
+                            id="inputTexto" 
+                            rows="6" 
+                            placeholder="Ejemplo: El producto llegó en perfectas condiciones. La calidad es excelente y superó mis expectativas. El servicio de atención al cliente fue muy amable y resolvió todas mis dudas. ¡Totalmente recomendado!"
+                            required
+                        ></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Analizar Texto
+                    </button>
+                </form>
+
+                <div id="resultadoTexto" class="resultado hidden"></div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="audio">
+            <div class="card">
+                <h2><i class="fas fa-microphone-alt"></i> Análisis de Audio</h2>
+                <p class="text-muted">Transcribe y analiza grabaciones de voz</p>
+                
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    <strong>Importante:</strong> El audio debe estar en formato WAV. 
+                    Puedes convertir tu audio usando herramientas online.
+                </div>
+
+                <form id="formAudio">
+                    <div class="form-group">
+                        <label for="inputAudio">Selecciona archivo de audio:</label>
+                        <div class="file-input-wrapper">
+                            <input 
+                                type="file" 
+                                id="inputAudio" 
+                                accept="audio/*" 
+                                required
+                            >
+                            <label for="inputAudio" class="file-input-label">
+                                <i class="fas fa-upload"></i>
+                                <span>Seleccionar archivo WAV</span>
+                            </label>
+                        </div>
+                        <div id="audioFileName" class="file-name"></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-play"></i> Transcribir y Analizar
+                    </button>
+                </form>
+
+                <div id="resultadoAudio" class="resultado hidden"></div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="imagen">
+            <div class="card">
+                <h2><i class="fas fa-camera"></i> Análisis de Imagen</h2>
+                <p class="text-muted">Detecta rostros, emociones y objetos en imágenes</p>
+
+                <form id="formImagen">
+                    <div class="form-group">
+                        <label for="inputImagen">Selecciona una imagen:</label>
+                        <div class="file-input-wrapper">
+                            <input 
+                                type="file" 
+                                id="inputImagen" 
+                                accept="image/*" 
+                                required
+                            >
+                            <label for="inputImagen" class="file-input-label">
+                                <i class="fas fa-image"></i>
+                                <span>Seleccionar imagen JPG/PNG</span>
+                            </label>
+                        </div>
+                        <div id="imagePreview" class="image-preview hidden">
+                            <div id="imagePlaceholder" class="image-placeholder">
+                                <i class="fas fa-image"></i>
+                                <p>Vista previa de la imagen</p>
+                            </div>
+
+                            <img id="previewImg" alt="Preview" class="hidden">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-eye"></i> Analizar Imagen
+                    </button>
+                </form>
+
+                <div id="resultadoImagen" class="resultado hidden"></div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="multimodal">
+            <div class="card">
+                <h2><i class="fas fa-magic"></i> Análisis Multimodal Completo</h2>
+                <p class="text-muted">Combina texto, audio e imagen para un análisis integral</p>
+
+                <form id="formMultimodal">
+                    <!-- Texto -->
+                    <div class="form-group">
+                        <label for="inputTextoMulti">
+                            <i class="fas fa-font"></i> Texto (opcional):
+                        </label>
+                        <textarea 
+                            id="inputTextoMulti" 
+                            rows="4" 
+                            placeholder="Escribe el feedback del cliente..."
+                        ></textarea>
+                    </div>
+
+                    <div class="multi-file-inputs">
+                        <!-- Audio -->
+                        <div class="form-group">
+                            <label for="inputAudioMulti">
+                                <i class="fas fa-microphone"></i> Audio (opcional):
+                            </label>
+                            <div class="file-input-wrapper">
+                                <input 
+                                    type="file" 
+                                    id="inputAudioMulti" 
+                                    accept="audio/*"
+                                    style="display: none;"
+                                >
+                                <label for="inputAudioMulti" class="file-input-label-small">
+                                    <i class="fas fa-upload"></i>
+                                    <span>Seleccionar audio</span>
+                                </label>
+                            </div>
+                            <div id="audioMultiFileName" class="file-name-small"></div>
+                        </div>
+
+                        <!-- Imagen -->
+                        <div class="form-group">
+                            <label for="inputImagenMulti">
+                                <i class="fas fa-image"></i> Imagen (opcional):
+                            </label>
+                            <div class="file-input-wrapper">
+                                <input 
+                                    type="file" 
+                                    id="inputImagenMulti" 
+                                    accept="image/*"
+                                    style="display: none;"
+                                >
+                                <label for="inputImagenMulti" class="file-input-label-small">
+                                    <i class="fas fa-upload"></i>
+                                    <span>Seleccionar imagen</span>
+                                </label>
+                            </div>
+                            <div id="imageMultiFileName" class="file-name-small"></div>
+                            <div id="imageMultiPreview" class="image-preview-small hidden">
+                                <img id="previewImgMulti" src="" alt="Preview">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Debes proporcionar al menos UNO de los tres tipos de entrada
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-large">
+                        <i class="fas fa-rocket"></i> Análisis Completo
+                    </button>
+                </form>
+
+                <div id="resultadoMultimodal" class="resultado hidden"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer con APIs -->
+    <footer class="footer">
+        <div class="container">
+            <h3>APIs de Google Cloud Utilizadas</h3>
+            <div class="api-cards">
+                <div class="api-card">
+                    <i class="fas fa-language"></i>
+                    <h4>Natural Language API</h4>
+                    <p>Análisis de sentimiento y extracción de entidades</p>
+                </div>
+                <div class="api-card">
+                    <i class="fas fa-volume-up"></i>
+                    <h4>Speech-to-Text API</h4>
+                    <p>Transcripción automática de audio a texto</p>
+                </div>
+                <div class="api-card">
+                    <i class="fas fa-eye"></i>
+                    <h4>Vision API</h4>
+                    <p>Detección de rostros, emociones y objetos</p>
+                </div>
+            </div>
+            <p class="footer-text">
+                Proyecto - Análisis de Feedback Multimodal v1.0
+            </p>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Analizando con IA...</p>
+        </div>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
