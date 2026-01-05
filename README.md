@@ -1,4 +1,4 @@
-# 🧠 Sistema de Análisis de Feedback Multimodal
+<img width="256" height="256" alt="image" src="https://github.com/user-attachments/assets/d5d6c163-fa6b-491e-97b1-3f94df5d7f5a" /># 🧠 Sistema de Análisis de Feedback Multimodal
 
 Sistema automatizado para el análisis de reseñas de clientes mediante **Inteligencia Artificial en la nube (Google Cloud AI)**, con soporte **multimodal** (texto, audio e imágenes), **almacenamiento persistente** y **chatbot interactivo** para consulta de resultados.
 
@@ -108,6 +108,9 @@ uvicorn app:app --reload
 - Docs: http://localhost:8000/docs
 
 ---
+
+## ▶️ Video Desmostrativo
+[![Video demostrativo](https://img.youtube.com/vi/pz79y8wQIAA/0.jpg)](https://youtu.be/pz79y8wQIAA)
 
 ## 👨‍💻 Autor
 
