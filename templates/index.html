@@ -244,10 +244,69 @@
                 </div>
             </div>
             <p class="footer-text">
-                Proyecto - Análisis de Feedback Multimodal v1.0
+                Proyecto - Análisis de Feedback Multimodal v2.0
             </p>
         </div>
     </footer>
+
+    <!-- Chatbot Widget -->
+    <div id="chatbot-container" class="chatbot-container hidden">
+        <div class="chatbot-header">
+            <div class="chatbot-header-content">
+                <i class="fas fa-robot"></i>
+                <div>
+                    <h4>Asistente de Feedback</h4>
+                    <p class="chatbot-status">En línea</p>
+                </div>
+            </div>
+            <div class="chatbot-actions">
+                <button id="chatbot-minimize" class="chatbot-action-btn" title="Minimizar">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button id="chatbot-close" class="chatbot-action-btn" title="Cerrar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="chatbot-message bot-message">
+                <div class="message-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="message-content">
+                    <p>👋 ¡Hola! Soy tu asistente inteligente. Puedo ayudarte con:</p>
+                    <ul>
+                        <li>📊 Ver estadísticas del feedback</li>
+                        <li>📁 Consultar categorías</li>
+                        <li>📝 Mostrar feedback reciente</li>
+                        <li>☁️ Información sobre las APIs</li>
+                    </ul>
+                    <p>¿En qué puedo ayudarte?</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chatbot-suggestions">
+            <button class="suggestion-btn" data-message="Muéstrame las estadísticas">📊 Estadísticas</button>
+            <button class="suggestion-btn" data-message="¿Qué categorías tengo?">📁 Categorías</button>
+            <button class="suggestion-btn" data-message="Feedback reciente">📝 Recientes</button>
+            <button class="suggestion-btn" data-message="¿Qué APIs usas?">☁️ APIs</button>
+        </div>
+        
+        <div class="chatbot-input-container">
+            <input type="text" id="chatbot-input" placeholder="Escribe tu pregunta..." autocomplete="off">
+            <button id="chatbot-send" class="chatbot-send-btn">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Chatbot Toggle Button -->
+    <button id="chatbot-toggle" class="chatbot-toggle" title="Abrir asistente">
+        <i class="fas fa-comments"></i>
+        <span class="chatbot-badge">¡Nuevo!</span>
+    </button>
 
     <!-- Loading Overlay -->
     <div id="loadingOverlay" class="loading-overlay hidden">
@@ -258,5 +317,6 @@
     </div>
 
     <script src="/static/js/script.js"></script>
+    <script src="/static/js/chatbot.js"></script>
 </body>
 </html>
